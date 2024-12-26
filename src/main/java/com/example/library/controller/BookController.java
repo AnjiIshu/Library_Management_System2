@@ -4,6 +4,7 @@ import com.example.library.model.Book;
 import com.example.library.service.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -36,5 +37,16 @@ public class BookController {
         bookService.deleteBook(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search/title")
+    public List<Book> searchBooksByTitle(@RequestParam String title) {
+        return bookService.searchBooksByTitle(title);
+    }
+
+    @GetMapping("/search/author")
+    public List<Book> searchBooksByAuthor(@RequestParam String author) {
+        return bookService.searchBooksByAuthor(author);
+    }
+
 }
 
